@@ -1,0 +1,21 @@
+<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <target>System.out</target>
+    <encoder>
+        <charset>UTF-8</charset>
+        <pattern>%d{yyyy/MM/dd HH:mm:ss} %-5level [%thread] - %msg%n</pattern>
+    </encoder>
+</appender>
+
+<appender name="APPLIATION_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>/var/log/production/app.log</file>
+    
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <fileNamePattern>/var/log/production/app-%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+        <maxHistory>3</maxHistory>
+    </rollingPolicy>
+    
+    <encoder>
+        <charset>UTF-8</charset>
+        <pattern>%d{yyyy/MM/dd HH:mm:ss} %-5level [%thread] - %msg%n</pattern>
+    </encoder>
+</appender>
