@@ -1,6 +1,14 @@
 spring:
+  session:
+    redis:
+      repository-type: default
+    timeout: 180s
+  data:
+    redis:
+      host: localhost
+      port: 6379
   thymeleaf:
-    mode: html
+    mode: html 
 logging:
   file:
     name: classpath:logback.yaml
