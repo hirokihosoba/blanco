@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import blanco.controller.api.model.MessageOut;
+import blanco.controller.api.dto.MessageOut;
 
 @RestController
 @RequestMapping("api")

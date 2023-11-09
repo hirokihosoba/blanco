@@ -1,4 +1,4 @@
-package blanco.controller.api.model;
+package blanco.controller.api.dto;
 
 public class MessageOut {
 	private String content;

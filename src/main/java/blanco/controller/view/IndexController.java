@@ -1,4 +1,4 @@
-package blanco.controller;
+package blanco.controller.view;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,10 +19,10 @@ public class IndexController {
 		this.domainService = ｄomainService;
 	}
 	
-	@GetMapping("/index")
+	@GetMapping("/main")
 	public String index(Model model) {
 		model.addAttribute("message", domainService.salude());
 		logger.info("ログテスト");
-		return "index";
+		return "main/index";
 	}
 }

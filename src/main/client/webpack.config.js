@@ -1,17 +1,19 @@
-module.exports = {
-    entry: './src/index.tsx',
+const entries = {
+    main: './src/pages/main/index.tsx',
+    article: './src/pages/article/index.tsx'
+}
+
+module.exports = [{
+    entry: entries,
     output: {
-      path: __dirname + "/../resources/static/js",
-      filename: 'index.js',
+      path: __dirname + "/../resources/static/js/",
+      filename: '../js/[name]/index.js',
     },
     module: {
         rules: [
-            // test = loaderを使う特定の拡張子を指定
-            // use = testで指定した拡張子にloaderを使いwebpackが読み込めるようにする
             {
                 test: /\.css$/,
                 use: ["style-loader", "css-loader"],
-                //↑公式docによると、上記2つのloaderを追加すればCSSが読めるらしい
             },
             {
                 test: /\.tsx?$/,
@@ -25,4 +27,21 @@ module.exports = {
       resolve: {
         extensions: ['.js', '.ts', '.tsx']
         }
-  };
+  },{
+    entry: './src/css/style.css',
+    output: {
+      path: __dirname + "/../resources/static/css/",
+      filename: 'style.css',
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"],
+            },
+        ],
+      },
+      resolve: {
+        extensions: ['.css']
+        }
+  }];
