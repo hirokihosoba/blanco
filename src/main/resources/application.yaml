@@ -1,4 +1,8 @@
 spring:
+  security:
+    user:
+      name: guest
+      password: guest
   session:
     redis:
       repository-type: default
@@ -7,6 +11,18 @@ spring:
     redis:
       host: localhost
       port: 6379
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: guest
+    password: guest
+  h2:
+    console:
+      enabled: true
+  sql:
+    init:
+      schema-locations: classpath:schema.sql
+      data-locations: classpath:data.sql
   thymeleaf:
     mode: html 
 logging:
