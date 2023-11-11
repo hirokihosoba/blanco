@@ -23,6 +23,7 @@ spring:
     init:
       schema-locations: classpath:schema.sql
       data-locations: classpath:data.sql
+      mode: always
   thymeleaf:
     mode: html 
 logging:

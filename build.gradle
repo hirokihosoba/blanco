@@ -24,7 +24,7 @@ dependencies {
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-	// implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	// implementation("org.springframework.session:spring-session-data-redis")
 	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0"
 	runtimeOnly 'com.h2database:h2'
@@ -33,4 +33,3 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
-s
