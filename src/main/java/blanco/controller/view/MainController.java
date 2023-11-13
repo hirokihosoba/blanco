@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import blanco.domain.DomainService;
 
 @Controller
-public class IndexController {
+public class MainController {
 	
 	private final Logger logger = LoggerFactory.getLogger("appLogger");
 	
 	private DomainService domainService;
 	
-	public IndexController(DomainService ｄomainService) {
+	public MainController(DomainService ｄomainService) {
 		this.domainService = ｄomainService;
 	}
 	
