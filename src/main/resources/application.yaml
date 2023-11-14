@@ -27,4 +27,4 @@ logging:
   file:
     name: classpath:logback.yaml
 url:
-  localhost: http://localhost:8080
+  fqdn: http://localhost:8080
