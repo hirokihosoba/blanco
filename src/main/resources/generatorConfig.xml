@@ -16,16 +16,16 @@
         password="root">
     </jdbcConnection>
 
-    <javaModelGenerator targetPackage="blanco.adapter.database.model" targetProject="blanco/src/main/java">
+    <javaModelGenerator targetPackage="blanco.adapter.database.model" targetProject="src/main/java">
       <property name="enableSubPackages" value="true" />
       <property name="trimStrings" value="true" />
     </javaModelGenerator>
 
-    <sqlMapGenerator targetPackage="blanco.adapter.database.mapper" targetProject="blanco/src/main/resources">
+    <sqlMapGenerator targetPackage="blanco.adapter.database.mapper" targetProject="src/main/resources">
       <property name="enableSubPackages" value="true" />
     </sqlMapGenerator>
     
-    <javaClientGenerator type="XMLMAPPER" targetPackage="blanco.adapter.database.mapper" targetProject="blanco/src/main/java">
+    <javaClientGenerator type="XMLMAPPER" targetPackage="blanco.adapter.database.mapper" targetProject="src/main/java">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
 
