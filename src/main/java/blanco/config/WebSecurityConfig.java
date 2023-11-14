@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -12,7 +14,7 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig {
+public class WebSecurityConfig  {
 
 	@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, HandlerMappingIntrospector introspector) throws Exception {
@@ -32,8 +34,20 @@ public class WebSecurityConfig {
             	.formLogin(Customizer.withDefaults())
             	.csrf(Customizer.withDefaults())
             	.headers(Customizer.withDefaults())
-            	.authorizeHttpRequests(authz -> authz.anyRequest().authenticated());
+            	.authorizeHttpRequests(authz -> authz.anyRequest().authenticated())
+            .formLogin(login -> login
+                .defaultSuccessUrl("/", false)
+                .failureUrl("/login?error")
+                .permitAll())
+            .logout(logout -> logout
+            		.logoutUrl("/main"));
 		
 		return http.build();
 	}
+	
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
+    }
+	
 }
