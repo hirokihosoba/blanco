@@ -12,20 +12,19 @@ spring:
       host: localhost
       port: 6379
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:testdb
-    username: guest
-    password: guest
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/blanco
+    username: root
+    password: root
   h2:
     console:
       enabled: true
-  sql:
-    init:
-      schema-locations: classpath:schema.sql
-      data-locations: classpath:data.sql
-      mode: always
+  jpa:
+    show-sql: true
   thymeleaf:
     mode: html 
 logging:
   file:
     name: classpath:logback.yaml
+url:
+  localhost: http://localhost:8080

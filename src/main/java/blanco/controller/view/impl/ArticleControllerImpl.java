@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import blanco.controller.view.ArticleController;
+import blanco.domain.impl.CustomerDomainServiceImpl;
+import blanco.domain.model.Customer;
 import blanco.service.ArticleService;
 
 @Controller
@@ -11,13 +13,17 @@ public class ArticleControllerImpl implements ArticleController {
 	
 	ArticleService articleService;
 	
-	public ArticleControllerImpl(ArticleService articleService) {
+	CustomerDomainServiceImpl customerDomainServiceImpl;
+	
+	public ArticleControllerImpl(ArticleService articleService,CustomerDomainServiceImpl customerDomainServiceImpl) {
 		this.articleService = articleService;
+		this.customerDomainServiceImpl = customerDomainServiceImpl;
 	}
 
 	@Override
 	public String index(Model model) {
-		model.addAttribute("message", articleService.getArticle());
+		Customer customer = customerDomainServiceImpl.getUser("cota"); 
+		model.addAttribute("message", customer.getName() + " " + customer.getPassword());
 		return "article/index";
 	}
 }

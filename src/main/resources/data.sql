@@ -1,1 +1,0 @@
-INSERT INTO USERS(NAME, PASSWORD) VALUES ('cota', 'password')
