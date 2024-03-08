@@ -20,7 +20,8 @@ public class WebSecurityConfig  {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, HandlerMappingIntrospector introspector) throws Exception {
 		MvcRequestMatcher.Builder mvcMatcherBuilder = new MvcRequestMatcher.Builder(introspector).servletPath("/main");
 		
-        http.securityMatcher(AntPathRequestMatcher.antMatcher("/h2-console/**"))
+        http
+        	.securityMatcher(AntPathRequestMatcher.antMatcher("/h2-console/**"))
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll())
                 .csrf(csrf -> csrf
