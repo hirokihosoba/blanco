@@ -1,5 +1,4 @@
 package blanco.controller.view.impl;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -22,8 +21,10 @@ public class ArticleControllerImpl implements ArticleController {
 
 	@Override
 	public String index(Model model) {
-		Customer customer = customerDomainServiceImpl.getUser("cota"); 
-		model.addAttribute("message", customer.getName() + " " + customer.getPassword());
+		Customer customer = customerDomainServiceImpl.getUser("suzuki"); 
+		model.addAttribute("message", customer.getName() + " " + customer.getPassword() + " hot reloaded");
 		return "article/index";
 	}
+
+	
 }

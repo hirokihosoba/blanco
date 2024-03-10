@@ -1,5 +1,7 @@
 package blanco.domain.impl;
 
+import java.util.Objects;
+
 import org.springframework.stereotype.Service;
 
 import blanco.adapter.database.dao.service.impl.CustomerServiceImpl;
@@ -18,6 +20,9 @@ public class CustomerDomainServiceImpl implements CustomerDomainService {
 	@Override
 	public Customer getUser(String name) {
 		blanco.adapter.database.model.Customer customer = service.getCustomerByName(name);
+		if(Objects.isNull(customer)){
+			return null;
+		}
 		Customer out = new Customer();
 		out.setName(customer.getName());
 		out.setPassword(customer.getPassword());
