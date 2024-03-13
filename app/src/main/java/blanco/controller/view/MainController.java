@@ -1,28 +1,10 @@
 package blanco.controller.view;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import blanco.domain.DomainService;
+public interface MainController {
 
-@Controller
-public class MainController {
-	
-	private final Logger logger = LoggerFactory.getLogger("appLogger");
-	
-	private DomainService domainService;
-	
-	public MainController(DomainService ｄomainService) {
-		this.domainService = ｄomainService;
-	}
-	
 	@GetMapping("/main")
-	public String index(Model model) {
-		model.addAttribute("message", domainService.salude());
-		logger.info("ログテスト");
-		return "main/index";
-	}
+	public String main(Model model);
 }

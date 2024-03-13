@@ -2,6 +2,8 @@ package blanco.adapter.database.dao.service.impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -13,6 +15,8 @@ import blanco.adapter.database.model.CustomerExample;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 	
+	private final Logger logger = LoggerFactory.getLogger("appLogger");
+
 	private CustomerMapper mapper;
 	
 	CustomerServiceImpl(CustomerMapper mapper) {
@@ -28,6 +32,15 @@ public class CustomerServiceImpl implements CustomerService {
 			return null;
 		}
 		return customer.get(0);
+	}
+
+	@Override
+	public void registerCustomer(Customer customer) {
+		try {
+			mapper.insert(customer);
+		} catch (Exception e) {
+			logger.error("ERROR", e);
+		}
 	}
 
 }

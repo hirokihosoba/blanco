@@ -29,4 +29,12 @@ public class CustomerDomainServiceImpl implements CustomerDomainService {
 		return out;
 	}
 
+	@Override
+	public void register(Customer customer) {
+		blanco.adapter.database.model.Customer daoCustomer = new blanco.adapter.database.model.Customer();
+		daoCustomer.setName(customer.getName());
+		daoCustomer.setPassword(customer.getPassword());
+		service.registerCustomer(daoCustomer);
+	}
+
 }

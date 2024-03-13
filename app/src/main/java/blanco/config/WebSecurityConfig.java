@@ -9,7 +9,6 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 @Configuration
@@ -21,27 +20,22 @@ public class WebSecurityConfig  {
 		MvcRequestMatcher.Builder mvcMatcherBuilder = new MvcRequestMatcher.Builder(introspector).servletPath("/main");
 		
         http
-        	.securityMatcher(AntPathRequestMatcher.antMatcher("/h2-console/**"))
-                .authorizeHttpRequests(authz -> authz
-                        .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll())
-                .csrf(csrf -> csrf
-                        .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")))
-                .headers(headers -> headers.frameOptions(
-                         frame -> frame.sameOrigin()))
             .securityMatcher(mvcMatcherBuilder.pattern("/main"))
-            	.authorizeHttpRequests(authrization -> authrization
-            			.requestMatchers(mvcMatcherBuilder.pattern("/main")).permitAll())
-            .securityMatcher("/**")
-            	.formLogin(Customizer.withDefaults())
-            	.csrf(Customizer.withDefaults())
-            	.headers(Customizer.withDefaults())
-            	.authorizeHttpRequests(authz -> authz.anyRequest().authenticated())
+                .authorizeHttpRequests(authrization -> authrization
+                    .requestMatchers(mvcMatcherBuilder.pattern("/main"))
+                    .permitAll())
             .formLogin(login -> login
-                .defaultSuccessUrl("/", false)
-                .failureUrl("/login?error")
-                .permitAll())
+                .loginPage("/sign/in")
+                .permitAll()
+                .defaultSuccessUrl("/article", false)
+                .failureUrl("/sign/in?error"))
             .logout(logout -> logout
-            		.logoutUrl("/main"));
+                .logoutUrl("/sign/out")
+                .logoutSuccessUrl("/main"))
+            .securityMatcher("/**")
+                .csrf(Customizer.withDefaults())
+                .headers(Customizer.withDefaults())
+                .authorizeHttpRequests(authz -> authz.anyRequest().authenticated());
 		
 		return http.build();
 	}

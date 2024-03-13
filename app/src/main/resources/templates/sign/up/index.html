@@ -1,0 +1,23 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Sign Up Form</title>
+        <link th:href="@{/css/style.css}" rel="stylesheet">
+    </head>
+
+    <div class="container app">
+        <form action="#" th:action="@{/register}"  method="post">
+          <div class="input-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="input-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+          </div>
+          <button type="submit" class="btn">Sign Up!</button>
+        </form>
+    </div>
+  <script th:src="@{/js/signUp/index.js}"></script>
+</html>

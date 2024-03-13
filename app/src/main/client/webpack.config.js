@@ -1,6 +1,9 @@
 const entries = {
     main: './src/pages/main/index.tsx',
-    article: './src/pages/article/index.tsx'
+    article: './src/pages/article/index.tsx',
+    signUp: './src/pages/sign/up/index.tsx',
+    signIn: './src/pages/sign/in/index.tsx',
+    signOut: './src/pages/sign/out/index.tsx',
 }
 
 module.exports = [{
