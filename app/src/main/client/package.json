@@ -15,11 +15,15 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "ts-node src/index.ts",
+    "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx}\"",
+    "fix": "npm run format && npm run lint",
+    "lint:fix": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx}\"",
+    "postinstall": "typesync",
     "test": "react-scripts test",
     "dev": "webpack --mode development",
-    "build": "webpack --mode production",
-    "eject": "react-scripts eject"
+    "build": "webpack --mode production"
   },
   "eslintConfig": {
     "extends": [
@@ -40,13 +44,26 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.4",
+    "@babel/preset-env": "^7.3.4",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
+    "babel-cli": "^6.26.0",
     "css-loader": "^6.8.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "mini-css-extract-plugin": "^2.8.1",
+    "prettier": "^2.3.0",
     "ts-loader": "^9.5.0",
-    "typescript": "^5.2.2",
+    "typescript": "5.0",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
+  },
+  "compilerOptions": {
+    "module": "es20215",
+    "target": "es20215",
+    "sourceMap": true
   }
 }

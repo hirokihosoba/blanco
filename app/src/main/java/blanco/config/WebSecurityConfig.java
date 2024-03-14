@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 @Configuration
@@ -16,14 +15,11 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 public class WebSecurityConfig  {
 
 	@Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, HandlerMappingIntrospector introspector) throws Exception {
-		MvcRequestMatcher.Builder mvcMatcherBuilder = new MvcRequestMatcher.Builder(introspector).servletPath("/main");
-		
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, HandlerMappingIntrospector introspector) throws Exception {		
         http
-            .securityMatcher(mvcMatcherBuilder.pattern("/main"))
-                .authorizeHttpRequests(authrization -> authrization
-                    .requestMatchers(mvcMatcherBuilder.pattern("/main"))
-                    .permitAll())
+            .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                .requestMatchers("/css/**", "/js/**", "/images/**", "/main", "/sign/up", "/api/**")
+                .permitAll())
             .formLogin(login -> login
                 .loginPage("/sign/in")
                 .permitAll()
