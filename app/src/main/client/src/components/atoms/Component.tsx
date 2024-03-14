@@ -1,3 +1,5 @@
+import { Grid, Stack } from '@mui/material'
+import Button from '@mui/material/Button'
 import axios from 'axios'
 import * as React from 'react'
 import { useEffect, useState } from 'react'
@@ -37,6 +39,13 @@ const Component = () => {
   return (
     <div>
       <h2>{message.content}</h2>
+      <Grid container justifyContent="center">
+        <Stack direction="column">
+          <Button variant="text">Hello World</Button>
+          <Button variant="contained">Hello World</Button>
+          <Button variant="outlined">Hello World</Button>
+        </Stack>
+      </Grid>
     </div>
   )
 }
