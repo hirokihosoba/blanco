@@ -17,10 +17,7 @@ const cssEntries = {}
 
 //tsx
 tsxTargets.forEach((value) => {
-  const fliePath = `${path.dirname(value)}/${path.basename(
-    value,
-    path.extname(value)
-  )}`
+  const fliePath = `${path.dirname(value)}/${path.basename(value, path.extname(value))}`
   const key = `/js/pages/${fliePath}`
   tsEntries[key] = `./src/pages/${fliePath}.tsx`
 })
@@ -31,10 +28,7 @@ const jsTargets = glob.sync('**/*.js', {
   cwd: jsPath
 })
 jsTargets.forEach((value) => {
-  const key = `/js/${path.dirname(value)}/${path.basename(
-    value,
-    path.extname(value)
-  )}`
+  const key = `/js/${path.dirname(value)}/${path.basename(value, path.extname(value))}`
   jsEntries[key] = `./src/${value}`
 })
 
@@ -44,38 +38,39 @@ const cssTargets = glob.sync('**/style.css', {
   cwd: cssPath
 })
 cssTargets.forEach((value) => {
-  const dirName = path.dirname(value) === '.' ? '' : `${path.dirname(value)}/`;
-  const filePath = dirName + path.basename(value, path.extname(value));
-  const key = `/css/${filePath}`;
+  const dirName = path.dirname(value) === '.' ? '' : `${path.dirname(value)}/`
+  const filePath = dirName + path.basename(value, path.extname(value))
+  const key = `/css/${filePath}`
   tsEntries[key] = `./src/static/style/${filePath}.css`
 })
-  
-module.exports = [{
+
+module.exports = [
+  {
     entry: tsEntries,
     output: {
       path: path.resolve(resources, 'static'),
-      filename: '[name].js',
+      filename: '[name].js'
     },
     module: {
-        rules: [
-            {
-                test: /\.tsx?$/,
-                exclude: [/node_modules/, /\.(sa|sc|c)ss?$/],
-                use: {
-                    loader: "ts-loader"
-                }
-            },
-            { 
-              test: /\.js$/,
-              exclude: [/node_modules/, /\.(sa|sc|c)ss?$/],
-              use: ["bable-loader"],
-          },
-          { 
-            test: /\.css$/,
-            exclude: [/node_modules/, /\.(j|t|)s[x]?$/],
-            use: [MiniCssExtractPlugin.loader,'css-loader']
+      rules: [
+        {
+          test: /\.tsx?$/,
+          exclude: [/node_modules/, /\.(sa|sc|c)ss?$/],
+          use: {
+            loader: 'ts-loader'
+          }
         },
-        ],
+        {
+          test: /\.js$/,
+          exclude: [/node_modules/, /\.(sa|sc|c)ss?$/],
+          use: ['bable-loader']
+        },
+        {
+          test: /\.css$/,
+          exclude: [/node_modules/, /\.(j|t|)s[x]?$/],
+          use: [MiniCssExtractPlugin.loader, 'css-loader']
+        }
+      ]
     },
     resolve: {
       extensions: ['.js', '.ts', '.tsx']
@@ -84,13 +79,14 @@ module.exports = [{
       minimizer: [
         new TerserPlugin({
           extractComments: false
-        })]
+        })
+      ]
     },
     plugins: [
       new MiniCssExtractPlugin({
         filename: '[name].css'
       })
-    ]
-  
-  }];
-  
+    ],
+    devtool: 'inline-source-map'
+  }
+]
