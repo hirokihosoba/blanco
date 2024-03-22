@@ -13,11 +13,11 @@ export const defaultQueryClient = new QueryClient({
   }
 })
 
-const cookieValue = document.cookie.split('; ').find((value) => value === 'XSRF-TOKEN')
+const csrfToken = document.cookie.split('; ').find((value) => value === 'XSRF-TOKEN')
 
 const headers = {
   'Content-Type': 'application/json',
-  'X-XSRF-TOKEN': cookieValue
+  'X-XSRF-TOKEN': csrfToken
 }
 
 export const useGetApi = <T>(url: string) =>
@@ -26,7 +26,7 @@ export const useGetApi = <T>(url: string) =>
     queryFn: async () => axios.get<T>('/api/' + url).then((res) => res.data)
   })
 
-export const usePostApi = <T>(url: string, params: any) =>
+export const usePostApi = <T, R>(url: string, params: R) =>
   useQuery<T>({
     queryKey: [url],
     queryFn: async () => axios.post<T>('/api/' + url, params, { headers: headers }).then((res) => res.data)

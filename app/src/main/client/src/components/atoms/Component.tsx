@@ -1,11 +1,11 @@
 import { Grid, Stack } from '@mui/material'
 import Button from '@mui/material/Button'
 import * as React from 'react'
-import { useGetMessage, usePostMessage } from '../../hooks/api/useMessage'
+import { messagePostRequestType, useGetMessage, usePostMessage } from '../../hooks/api/useMessage'
 
 const Component = () => {
   const message = useGetMessage()
-  const messagePostParam = {
+  const messagePostParam: messagePostRequestType = {
     title: 'sample'
   }
 
