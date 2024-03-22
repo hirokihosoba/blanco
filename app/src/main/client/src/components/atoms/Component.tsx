@@ -1,44 +1,22 @@
 import { Grid, Stack } from '@mui/material'
 import Button from '@mui/material/Button'
-import axios from 'axios'
 import * as React from 'react'
-import { useEffect, useState } from 'react'
-
-type Message = {
-  content: string
-}
-
-const initalMessage: Message = {
-  content: ''
-}
+import { useGetMessage, usePostMessage } from '../../hooks/api/useMessage'
 
 const Component = () => {
-  const [message, setMessages] = useState<Message>(initalMessage)
-
-  const getMessage = async () => {
-    try {
-      // URL
-      const url = 'http://localhost:8080/api/test'
-
-      const response = await axios.get<Message>(url)
-      console.log(response)
-      return response.data
-    } catch (error) {
-      console.error(error)
-      return initalMessage
-    }
+  const message = useGetMessage()
+  const messagePostParam = {
+    title: 'sample'
   }
 
-  useEffect(() => {
-    ;(async () => {
-      const response = await getMessage()
-      setMessages(response)
-    })()
-  }, [])
+  const postResult = usePostMessage(messagePostParam)
 
   return (
     <div>
-      <h2>{message.content}</h2>
+      {message.isError ? <h1>ERROR!</h1> : <h1>SUCCESS!</h1>}
+      <h2>{message.error?.message}</h2>
+      {/* <h2>{message.data?.naiyou}</h2> */}
+      <h2>{postResult.data?.result}</h2>
       <Grid container justifyContent="center">
         <Stack direction="column">
           <Button variant="text">Hello World</Button>
