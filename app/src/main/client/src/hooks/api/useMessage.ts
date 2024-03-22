@@ -1,23 +1,51 @@
 import { useGetApi, usePostApi } from './useApi'
 
-// interface baseResponse {
-//   errorMessage?: string
-// }
-
 export type messageResponseType = {
+  apiErrorInfo?: apiErrorInfo
   naiyou: number[]
+  result1: string
+  result2: string
+}
+
+export type apiErrorInfo = {
+  status?: number
+  code?: string
+  message?: string
 }
 
 export type messagePostRequestType = {
   title: string
 }
 
+export type getExceptionType = {
+  apiErrorInfo?: apiErrorInfo
+  title: string
+}
+
+export type paramRequestType = {
+  param1: string
+  param2: string
+}
+
 export type messagePostResponseType = {
+  apiErrorInfo?: apiErrorInfo
   result: string
 }
 
 export const useGetMessage = () => {
-  return useGetApi<messageResponseType>('test')
+  return useGetApi<messageResponseType, null>('test', null)
+}
+
+export const useGetError = () => {
+  return useGetApi<getExceptionType, null>('error', null)
+}
+
+export const useGetParam = () => {
+  const params: paramRequestType = {
+    param1: 'リクエスト',
+    param2: 'Success'
+  }
+  return useGetApi<messageResponseType, paramRequestType>('param', params)
 }
 
 export const usePostMessage = (param: messagePostRequestType) => {
