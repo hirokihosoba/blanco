@@ -1,7 +1,5 @@
 package blanco.controller.api;
 
-import java.util.Objects;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,14 +37,7 @@ public class ApiController {
 	 }
 
 	 @PostMapping("/post")
-	 public MessagePostOut testPost(@RequestBody MessagePostIn in) {
-		MessagePostOut out = new MessagePostOut();
-		 if (Objects.equals(in.getTitle(), "sample")){
-			out.setResult("exito");
-		 }else {
-			out.setResult("falla");
-		 }
-
-		 return out;
+	 public MessagePostOut testPost(@RequestBody MessagePostIn in) throws Exception {
+		throw new Exception("POST エラー！！！！！！");
 	 }
 }

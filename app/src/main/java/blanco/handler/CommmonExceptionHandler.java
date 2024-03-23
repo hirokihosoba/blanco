@@ -24,7 +24,7 @@ public class CommmonExceptionHandler extends ResponseEntityExceptionHandler {
         apiError.setMessage("Esto es un erorr");
         res.setApiErrorInfo(apiError);
 
-        return handleExceptionInternal(ex, res , new HttpHeaders(), HttpStatusCode.valueOf(405), request);
+        return handleExceptionInternal(ex, null , new HttpHeaders(), HttpStatusCode.valueOf(405), request);
     }
 
 }

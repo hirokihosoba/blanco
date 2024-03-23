@@ -1,16 +1,10 @@
-import { useGetApi, usePostApi } from './useApi'
+import { apiErrorInfo, useGetApi, usePostApi } from './useApi'
 
 export type messageResponseType = {
   apiErrorInfo?: apiErrorInfo
   naiyou: number[]
   result1: string
   result2: string
-}
-
-export type apiErrorInfo = {
-  status?: number
-  code?: string
-  message?: string
 }
 
 export type messagePostRequestType = {
