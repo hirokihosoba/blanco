@@ -30,7 +30,7 @@ public class CustomerDetails implements UserDetails{
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return this.customer.getName();
+		return this.customer.getCustomerId();
 	}
 
 	@Override

@@ -6,7 +6,7 @@ import blanco.adapter.database.model.Customer;
 
 @Service
 public interface CustomerService {
-	Customer getCustomerByName(String name);
+	Customer getCustomerById(String name);
 
 	void registerCustomer(Customer customer);
 }

@@ -22,7 +22,7 @@ public class ArticleControllerImpl implements ArticleController {
 	@Override
 	public String index(Model model) {
 		Customer customer = customerDomainServiceImpl.getUser("suzuki"); 
-		model.addAttribute("message", customer.getName() + " " + customer.getPassword() + " hot reloaded");
+		model.addAttribute("message", customer.getCustomerId() + " " + customer.getPassword() + " hot reloaded");
 		return "article/index";
 	}
 

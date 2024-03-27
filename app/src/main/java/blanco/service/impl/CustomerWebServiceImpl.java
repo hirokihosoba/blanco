@@ -16,9 +16,9 @@ public class CustomerWebServiceImpl implements CustomerWebService {
     }
 
     @Override
-    public void register(String name, String password) {
+    public void register(String id, String password) {
         Customer customer = new Customer();
-        customer.setName(name);
+        customer.setCustomerId(id);
         customer.setPassword(password);
         customerService.register(customer);
     }

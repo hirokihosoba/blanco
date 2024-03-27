@@ -18,13 +18,13 @@ public class CustomerDomainServiceImpl implements CustomerDomainService {
 	}
 
 	@Override
-	public Customer getUser(String name) {
-		blanco.adapter.database.model.Customer customer = service.getCustomerByName(name);
+	public Customer getUser(String id) {
+		blanco.adapter.database.model.Customer customer = service.getCustomerById(id);
 		if(Objects.isNull(customer)){
 			return null;
 		}
 		Customer out = new Customer();
-		out.setName(customer.getName());
+		out.setCustomerId(customer.getCustomerId());
 		out.setPassword(customer.getPassword());
 		return out;
 	}
@@ -32,7 +32,7 @@ public class CustomerDomainServiceImpl implements CustomerDomainService {
 	@Override
 	public void register(Customer customer) {
 		blanco.adapter.database.model.Customer daoCustomer = new blanco.adapter.database.model.Customer();
-		daoCustomer.setName(customer.getName());
+		daoCustomer.setCustomerId(customer.getCustomerId());
 		daoCustomer.setPassword(customer.getPassword());
 		service.registerCustomer(daoCustomer);
 	}

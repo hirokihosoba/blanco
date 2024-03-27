@@ -15,10 +15,10 @@ public class CustomerDetailsService implements UserDetailsService {
 	CustomerServiceImpl daoService;
 
 	@Override
-	public CustomerDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Customer customer = daoService.getCustomerByName(username);
+	public CustomerDetails loadUserByUsername(String id) throws UsernameNotFoundException {
+		Customer customer = daoService.getCustomerById(id);
 		if (customer == null) {
-			throw new UsernameNotFoundException("not found user : " + username);
+			throw new UsernameNotFoundException("not found userId : " + id);
 		}
 		return new CustomerDetails(customer);
 	}

@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 
 services:
   app:
@@ -19,7 +19,7 @@ services:
     depends_on:
       - db
     environment:
-      DB_URL : jdbc:mysql://db:3306/blanco
+      DB_URL: jdbc:mysql://db:3306/blanco
     networks:
       - blanco-network
   db:

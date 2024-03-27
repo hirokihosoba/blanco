@@ -24,9 +24,9 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customer getCustomerByName(String name) {
+	public Customer getCustomerById(String id) {
 		CustomerExample example = new CustomerExample();
-		example.createCriteria().andNameEqualTo(name);
+		example.createCriteria().andCustomerIdEqualTo(id);
 		List<Customer> customer = mapper.selectByExample(example);
 		if (CollectionUtils.isEmpty(customer)) {
 			return null;
