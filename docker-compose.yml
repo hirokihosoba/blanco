@@ -6,8 +6,10 @@ services:
     restart: always
     ports:
       - "8080:8080"
+      - "443:443"
     volumes:
       - ./lb/haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+      - /etc/pki/CA/private/cakey.pem:/etc/pki/CA/private/cakey.pem
     networks:
       - blanco-network
   app:
