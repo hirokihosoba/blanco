@@ -56,6 +56,20 @@ services:
       - blanco-network
     command: mysql -hdb -uuser -ppassword blanco
 
+  react-app:
+    build:
+      context: /Users/hirokihosoba/Desktop/dev/blanco/app/src/main/client
+      dockerfile: Dockerfile.react
+    ports:
+      - "3000:3000"
+    volumes:
+      - /Users/hirokihosoba/Desktop/dev/blanco/app/src/main/client:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    networks:
+      - blanco-network
+
 networks:
   blanco-network:
     driver: bridge

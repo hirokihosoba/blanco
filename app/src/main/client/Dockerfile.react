@@ -1,0 +1,17 @@
+# ベースイメージを指定
+FROM node:14
+
+# アプリケーションディレクトリを作成
+WORKDIR /usr/src/app
+
+# パッケージファイルをコピー
+COPY package*.json ./
+
+# 依存関係をインストール
+RUN npm install
+
+# アプリケーションソースをコピー
+COPY . .
+
+# 開発サーバーを起動
+CMD ["npm", "start"]
