@@ -1,4 +1,5 @@
 import { apiErrorInfo, useGetApi, usePostApi } from './useApi'
+import { useState } from 'react';
 
 export type messageResponseType = {
   apiErrorInfo?: apiErrorInfo
@@ -45,3 +46,17 @@ export const useGetParam = () => {
 export const usePostMessage = (param: messagePostRequestType) => {
   return usePostApi<messagePostResponseType, messagePostRequestType>('post', param)
 }
+
+export const useMessage = () => {
+  const [messages, setMessages] = useState<string[]>([]);
+
+  const addMessage = (message: string) => {
+    setMessages((prevMessages) => [...prevMessages, message]);
+  };
+
+  return {
+    messages,
+    addMessage,
+    setMessages
+  };
+};

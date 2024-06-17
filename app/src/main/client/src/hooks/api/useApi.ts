@@ -1,6 +1,7 @@
 import { QueryClient, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import * as qs from 'qs'
+import { useMessage } from './useMessage';
 
 export type apiErrorInfo = {
   status?: number
@@ -69,3 +70,29 @@ const errorHandler = (error: any) => {
   }
   return error.response.data
 }
+
+export const useApi = () => {
+  const { setMessages } = useMessage();
+
+  const fetchMessages = async () => {
+    try {
+      const response = await axios.get('/api/messages');
+      setMessages(response.data);
+    } catch (error) {
+      console.error('Error fetching messages:', error);
+    }
+  };
+
+  const postMessage = async (message: string) => {
+    try {
+      await axios.post('/api/messages', { message });
+    } catch (error) {
+      console.error('Error posting message:', error);
+    }
+  };
+
+  return {
+    fetchMessages,
+    postMessage,
+  };
+};
